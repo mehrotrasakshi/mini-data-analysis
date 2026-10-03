@@ -1,0 +1,639 @@
+# Mini Data-Analysis: Deliverable 1
+Your name here
+
+Total points available: 74
+
+# Part 0: Getting Set Up
+
+Let’s get ready to work on this assignment!
+
+**0.1: Install Packages**
+
+- Install the [`diversedata`](https://diverse-data-hub.github.io/)
+  package by typing the following into your **R console**:
+
+<!-- -->
+
+    install.packages("pak")
+    library(pak)
+    pak::pak("diverse-data-hub/diversedata")
+
+**0.2: Load Packages**
+
+Typically, R Packages are loaded in at the very beginning of the
+analysis. If you later want to use other packages, please come back and
+add them here:
+
+``` r
+library(tidyverse)
+library(diversedata)
+library(moderndive)
+#--- Add any other packages below this line ---#
+```
+
+# Task 1: Choose a Data Set and Research Question
+
+You may use one of the datasets from class or one of the datasets from
+`diversedatahub`.
+
+- **boulder-housing**: This data set contains housing information for
+  the Boulder, Colorado area. *\[Add a second sentence here describing
+  what the data covers — e.g., the variables included or what question
+  it was collected to answer.\]*
+
+- **squirrel-census**: Thes\[[great NYC squirrel
+  census](https://www.thesquirrelcensus.com/),`squirrel-data.csv` –
+  squirrel sightings recorded around Manhattan and Brooklyn parks.
+
+- **rolling stone**: A [new visual
+  essay](https://pudding.cool/2024/03/greatest-music/) from The Pudding
+  compares Rolling Stone’s “500 Greatest Albums of All Time” lists from
+  2003, 2012, and 2020. A methodology note says the project began with a
+  spreadsheet by Chris Eckert and eventually led the authors to develop
+  a dataset of their own. Theirs lists every album in the rankings — its
+  name, genre, release year, 2003/2012/2020 rank, the artist’s name,
+  birth year, gender, and more — plus each year’s voters. \[h/t Jason
+  Kottke\]
+
+- **coffee census**: In 2023, [British
+  YouTuber](https://www.youtube.com/channel/UCMb0O2CdPBNi-QqPk5T3gsQ)
+  (and former [World Barista
+  Champion](https://www.jameshoffmann.co.uk/work#/coffee-competitions/))
+  James Hoffman virtually hosted the [Great American Coffee Taste
+  Test](https://www.youtube.com/watch?v=1fN_z4-EcOU), during which
+  thousands of people simultaneously blind-tasted the same four coffees.
+  Hoffman has published a [video summarizing the
+  results](https://www.youtube.com/watch?v=bMOOQfeloH0), as well as [a
+  spreadsheet of anonymized survey
+  responses](https://bit.ly/gacttCSV+)from 4,000+ participants. It
+  includes tasters’ demographics, general coffee drinking habits and
+  preferences, assessments of the four coffees, and more. \[h/t Dan
+  Brady\] (via
+  [data-is-plural](https://www.data-is-plural.com/archive/2023-11-15-edition/))
+
+- **wildfire**: This data set contains information on wildfires in
+  Canada, compiled from official government sources under the Open
+  Government Licence – Alberta. The data was gathered to monitor,
+  assess, and respond to wildfire risks across different regions.
+  Wildfires have far-reaching environmental, social, and economic
+  consequences. From an equity and inclusion perspective, analyzing
+  wildfire data can reveal geographic and resource-based disparities in
+  detection and containment efforts, and highlight how certain
+  populations face greater risks due to climate change and limited
+  infrastructure. There are 26551 rows and 35 columns.
+
+- **genderassessment**: Collected in 2023, the data allows for
+  comparative evaluation across countries, sectors, and ownership types
+  (e.g., Public, Private, Government). Each record represents a company
+  and its corresponding evaluation across 28 detailed gender related
+  indicators, offering a comprehensive snapshot of corporate gender
+  equity worldwide. There are 2000 rows and 29 variables
+
+- **hcmst**: This data set is adapted from the original data set [How
+  Couples Meet and Stay Together 2017,
+  2022](https://data.stanford.edu/hcmst2017). This study, led by
+  researchers from Stanford University, surveyed 1,722 U.S. adults in
+  2022 to explore how relationships form and change with time and
+  focused on dating habits and the impact of the COVID-19 pandemic on
+  relationships. This adapted data set focuses on variables that may
+  affect the quality of the relationship, considering demographic
+  characteristics of the subjects, couple dynamics, as well as
+  COVID-19-related variables. The COVID-19 pandemic had a [significant
+  impact](https://pmc.ncbi.nlm.nih.gov/articles/PMC10009005/) on
+  romantic relationships in the United States. This data set enables
+  exploration of how external factors, like the health of the subjects
+  and changes in income, as well as personal behaviors, like conflict
+  and intimate dynamics, relate to an individual’s perception of the
+  quality of the relationship. There are 1328 rows and 21 columns.
+
+- **womensmarchmadness**: This adapted data set contains historical
+  records of every NCAA Division I Women’s Basketball Tournament
+  appearance since the tournament began in 1982 up until 2018, capturing
+  tournament results across more than four decades of collegiate women’s
+  basketball. All data is sourced from the NCAA and contains the data
+  behind the story [The Rise and Fall Of Women’s NCAA Tournament
+  Dynasties](https://fivethirtyeight.com/features/louisiana-tech-was-the-uconn-of-the-80s/).
+  The rise in popularity of the NCAA Women’s March Madness, fueled by
+  athletes like Caitlin Clark and Paige Bueckers, reflects a broader
+  cultural shift in the recognition of women’s sports. Beyond
+  entertainment and athletic achievement, women’s participation in sport
+  has social and professional benefits. There are 2092 rows and 20
+  columns.
+
+*Note: We encourage you to use one of the options above, but if you have
+a data set that you’d really like to use, please check with a member of
+the teaching team to see whether the data set is of appropriate
+complexity. If approved, please add a brief description of the data
+here.*
+
+### 1.1: Choose 2 data sets **(2 points)**
+
+Out of the 5 data sets listed above, choose **2** that appeal to you
+based on their description. Write your choices below:
+
+<!-------------------------- Start your work below ---------------------------->
+
+1: rolling stone
+
+2: squirrel-census
+
+<!----------------------------------------------------------------------------->
+
+### 1.2: Explore the Data **(12 points)**
+
+One way to narrowing down your selection is to *explore* the data sets.
+Use your knowledge of `dplyr` to summarize three variables in each of
+the data sets (for example, listing what levels of a categorical
+variable exist, or calculating the mean of a continuous variable of
+interest). Write a sentence that describes your findings for each
+variable explored. You may use multiple R code chunks if preferred.
+
+<!-------------------------- Start your work below ---------------------------->
+
+#### Data Set 1
+
+``` r
+### Explore 3 variables of data set 1 ###
+
+library(janitor)
+```
+
+
+    Attaching package: 'janitor'
+
+    The following objects are masked from 'package:stats':
+
+        chisq.test, fisher.test
+
+``` r
+squirrels <- read_csv("squirrel-data.csv") |>
+  clean_names()
+```
+
+    Rows: 433 Columns: 16
+
+    ── Column specification ────────────────────────────────────────────────────────
+    Delimiter: ","
+    chr (14): Area Name, Area ID, Park Name, Park ID, Squirrel ID, Primary Fur C...
+    dbl  (2): Squirrel Latitude (DD.DDDDDD), Squirrel Longitude (-DD.DDDDDD)
+
+    ℹ Use `spec()` to retrieve the full column specification for this data.
+    ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+# Variable 1: primary fur color
+squirrels |>
+  count(primary_fur_color, sort = TRUE)
+```
+
+    # A tibble: 4 × 2
+      primary_fur_color     n
+      <chr>             <int>
+    1 Gray                390
+    2 Cinnamon             26
+    3 Black                16
+    4 <NA>                  1
+
+``` r
+# Variable 2: area of the city
+squirrels |>
+  count(area_name, sort = TRUE)
+```
+
+    # A tibble: 4 × 2
+      area_name             n
+      <chr>             <int>
+    1 CENTRAL MANHATTAN   174
+    2 UPPER MANHATTAN     129
+    3 LOWER MANHATTAN      72
+    4 BROOKLYN             58
+
+``` r
+# Variable 3: share of sightings where the squirrel was running
+squirrels |>
+  summarise(prop_running = mean(str_detect(activities, "Running"), na.rm = TRUE))
+```
+
+    # A tibble: 1 × 1
+      prop_running
+             <dbl>
+    1        0.169
+
+Primary fur color: gray squirrels dominate the sightings (390), far
+ahead of cinnamon (26) and black (16), with one sighting missing a
+color.
+
+Area: the most sightings are from Central Manhattan (174), then Upper
+Manhattan (129), Lower Manhattan (72) and Brooklyn (58).
+
+Running: among the sightings with an activity recorded, about 17%
+involved the squirrel running.
+
+#### Data Set 2
+
+``` r
+### Explore 3 variables of data set 2 ###
+
+rolling_stone <- read_csv("RollingStone500.csv") |>
+  clean_names() |>
+  # drop two stray, almost empty columns at the end of the file
+  select(-matches("^x(25|26)$")) |>
+  # "Not on Spotify" is text, so make it a real missing value and the column numeric
+  mutate(spotify_popularity = as.numeric(na_if(spotify_popularity, "Not on Spotify")))
+```
+
+    New names:
+    Rows: 691 Columns: 26
+    ── Column specification
+    ──────────────────────────────────────────────────────── Delimiter: "," chr
+    (19): Sort Name, Clean Name, Album, Album Genre, Album Type, Wks on Bill... dbl
+    (7): 2003 Rank Old, 2003 Rank, 2012 Rank, 2020 Rank, 2020-2003 Differen...
+    ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+    Specify the column types or set `show_col_types = FALSE` to quiet this message.
+    • `` -> `...25`
+    • `` -> `...26`
+
+``` r
+# Variable 1: album genre
+rolling_stone |>
+  count(album_genre, sort = TRUE)
+```
+
+    # A tibble: 17 × 2
+       album_genre                             n
+       <chr>                               <int>
+     1 <NA>                                  164
+     2 Punk/Post-Punk/New Wave/Power Pop      84
+     3 Soul/Gospel/R&B                        75
+     4 Blues/Blues Rock                       65
+     5 Hip-Hop/Rap                            61
+     6 Indie/Alternative Rock                 60
+     7 Country/Folk/Country Rock/Folk Rock    49
+     8 Singer-Songwriter/Heartland Rock       28
+     9 Hard Rock/Metal                        27
+    10 Funk/Disco                             22
+    11 Big Band/Jazz                          14
+    12 Electronic                             14
+    13 Rock n' Roll/Rhythm & Blues            10
+    14 Latin                                   8
+    15 Reggae                                  7
+    16 Afrobeat                                2
+    17 Blues/Blues ROck                        1
+
+``` r
+# Variable 2: release year
+rolling_stone |>
+  summarise(mean_year = mean(release_year, na.rm = TRUE),
+            min_year = min(release_year, na.rm = TRUE),
+            max_year = max(release_year, na.rm = TRUE))
+```
+
+    # A tibble: 1 × 3
+      mean_year min_year max_year
+          <dbl>    <dbl>    <dbl>
+    1     1983.     1955     2019
+
+``` r
+# Variable 3: Spotify popularity
+rolling_stone |>
+  summarise(mean_pop = mean(spotify_popularity, na.rm = TRUE),
+            median_pop = median(spotify_popularity, na.rm = TRUE),
+            n_missing = sum(is.na(spotify_popularity)))
+```
+
+    # A tibble: 1 × 3
+      mean_pop median_pop n_missing
+         <dbl>      <dbl>     <int>
+    1     55.8         57        37
+
+Genre: there are 16 genres; the biggest are Punk/Post-Punk/New
+Wave/Power Pop (84 albums), Soul/Gospel/R&B (75), Blues/Blues Rock (65)
+and Hip-Hop/Rap (61). About 24% of albums (164) have no genre listed.
+
+Release year: albums range from 1955 to 2019, with an average of about
+1983 (median 1979).
+
+Spotify popularity: the average score is about 56 (median 57), with
+scores from 10 to 91; 37 albums have no score.
+
+<!----------------------------------------------------------------------------->
+
+### 1.3: Choose 1 Data Set **(2 points)**
+
+It’s time to choose only one data set. State the data set that you’ve
+chosen, and why you’ve chosen it.
+
+<!-------------------------- Start your work below ---------------------------->
+
+I choose **rolling stone**. It has numeric variables (release year,
+Spotify popularity, ranks) next to categorical ones (artist gender,
+album type, genre), so it supports both summaries and group comparisons.
+The squirrel data is almost entirely categorical, and its one numeric
+variable (height above ground) is mostly missing and stored as messy
+text like “6-18”. I am also curious whether albums that critics ranked
+as the greatest are still popular with listeners today.
+
+<!----------------------------------------------------------------------------->
+
+### 1.4: Research Question **(4 points)**
+
+Let’s choose a primary and a secondary research question to explore.
+
+Write your research questions **as questions**, and be specific. You can
+change it later if needed.
+
+> For example, if I had chosen a `titanic` data set for my project, I
+> might ask, “(Primary) Is there a relationship between survival and the
+> class of the passengers? (Secondary) Does this relationship differ by
+> gender?”
+
+<!-------------------------- Start your work below ---------------------------->
+
+**(Primary)** Is there a relationship between the year an album was
+released and its Spotify popularity?
+
+**(Secondary)** Does this relationship differ by the artist’s gender
+(male, female, or mixed groups)?
+
+<!----------------------------------------------------------------------------->
+
+### 1.5: Commit **(2 points)**
+
+Commit your work and push it to GitHub. Include an informative commit
+message, and include “(1.5)” in the message.
+
+# Task 2: Further Exploring Your Chosen Data Set
+
+### 2.1: Missing Data **(6 points)**
+
+Missing data is inevitable, and can complicate analyses. Let’s see what
+variables (if any) have missing data in your chosen data set.
+
+Your task is to create a table that calculates the proportion of missing
+values per variable. Be sure to output the table.
+
+<!-------------------------- Start your work below ---------------------------->
+
+``` r
+### Explore missingness here ###
+
+rolling_stone |>
+  summarise(across(everything(), ~ mean(is.na(.x)))) |>
+  pivot_longer(everything(),
+               names_to = "variable",
+               values_to = "prop_missing") |>
+  arrange(desc(prop_missing))
+```
+
+    # A tibble: 24 × 2
+       variable           prop_missing
+       <chr>                     <dbl>
+     1 x2003_rank_old           0.276 
+     2 x2003_rank               0.276 
+     3 x2012_rank               0.276 
+     4 x2020_rank               0.276 
+     5 album_genre              0.237 
+     6 spotify_popularity       0.0535
+     7 chartmetric_link         0.0535
+     8 sort_name                0     
+     9 clean_name               0     
+    10 album                    0     
+    # ℹ 14 more rows
+
+<!----------------------------------------------------------------------------->
+
+### 2.2: Missing Data (Again) **(6 points)**
+
+Based on your research question, will this missingness pose an issue?
+For the purposes of this class (and this class only!), we will consider
+missingness a problem **if there is more than 20% of a single variable
+(that is of interest) is missing**.
+
+> For example, let’s assume I wanted to explore the following research
+> questions: “Is there a relationship between survival and the class of
+> the passengers? Does this relationship vary by gender?”. If the
+> variable indicating whether or not a person survived was missing for
+> 20% or more of the passengers, then this would be a problem. However,
+> if a variable indicating the colour of shirt a passenger was wearing
+> was missing, this probably wouldn’t be an issue as that variable is
+> quite irrelevant to my analysis!
+
+Based on this definition, is missingness an issue for your analysis? If
+so, describe how you will address this (pivoting your research question,
+for example). If you will continue with a new research question, write
+it here! **Do not go back to Task 1 and redo the analysis.** ).
+
+If missingness is not an issue, describe why.
+
+<!-------------------------- Start your work below ---------------------------->
+
+The variables I need for my research questions are `release_year`,
+`spotify_popularity` and `artist_gender`. In the table above,
+`release_year` has no missing values, `spotify_popularity` is about 5%
+missing (the albums that are not on Spotify) and `artist_gender` is
+under 1% missing. All are well below the 20% cutoff, so **missingness is
+not an issue** for my analysis.
+
+Some other variables are over 20% missing, namely `album_genre` (about
+24%) and the three rank columns (about 28%). I am not using them, and I
+chose artist gender instead of genre for my secondary question for this
+reason.
+
+### 2.3: Tidy your Data **(10 points)**
+
+Produce a tidy data set that could be used to answer your research
+questions. **Please ensure you have at least one quantitative (numeric)
+and one categorical variable in your data set. It’s okay you need to
+include a less relevant variable in your tidied data to ensure this.**
+
+To tidy your data, you should:
+
+- Create new variables (if needed)
+
+- Transform the data into a tidy form (if needed)
+
+- Remove irrelevant columns (if needed)
+
+- Comment your code throughout
+
+Show the first 6 rows of the tidied data.
+
+<!-------------------------- Start your work below ---------------------------->
+
+``` r
+tidy_rs <- rolling_stone |>
+  select(clean_name, album, release_year, artist_gender, spotify_popularity) |>
+  mutate(decade = floor(release_year / 10) * 10,
+         artist_gender = as.factor(artist_gender)) |>
+  drop_na(release_year, spotify_popularity, artist_gender)
+
+head(tidy_rs)
+```
+
+    # A tibble: 6 × 6
+      clean_name     album      release_year artist_gender spotify_popularity decade
+      <chr>          <chr>             <dbl> <fct>                      <dbl>  <dbl>
+    1 Frank Sinatra  In the We…         1955 Male                          48   1950
+    2 Bo Diddley     Bo Diddle…         1955 Male                          50   1950
+    3 Elvis Presley  Elvis Pre…         1956 Male                          58   1950
+    4 Frank Sinatra  Songs for…         1956 Male                          62   1950
+    5 Little Richard Here's Li…         1957 Male                          64   1950
+    6 Beyonce        Lemonade           2016 Female                        73   2010
+
+The data are tidy: each row is one album, each column is one variable,
+and each cell holds one value.
+
+### 2.4: Create a Table (10 points)
+
+Use any functions from the `tidyverse` to create one table that outputs
+the mean, minimum, and maximum of all numeric columns in your data,
+dropping the missing values if they exist.
+
+Show the outputted table.
+
+<!-------------------------- Start your work below ---------------------------->
+
+``` r
+tidy_rs |>
+  summarise(across(where(is.numeric),
+                   list(mean = ~ mean(.x, na.rm = TRUE),
+                        min  = ~ min(.x, na.rm = TRUE),
+                        max  = ~ max(.x, na.rm = TRUE)),
+                   .names = "{.col}__{.fn}")) |>
+  pivot_longer(everything(),
+               names_to = c("variable", "stat"),
+               names_sep = "__") |>
+  pivot_wider(names_from = stat, values_from = value)
+```
+
+    # A tibble: 3 × 4
+      variable             mean   min   max
+      <chr>               <dbl> <dbl> <dbl>
+    1 release_year       1983.   1955  2019
+    2 spotify_popularity   55.8    10    91
+    3 decade             1978.   1950  2010
+
+<!----------------------------------------------------------------------------->
+
+### 2.5: Commit **(2 points)**
+
+Commit your work and push it to GitHub. , and include “(2.7)” in the
+message.
+
+# Task 3: Tidy Your Submission Overall
+
+Check over your document and GitHub repository for the following:
+
+### 3.1: Coherence **(2 points)**
+
+The document should read sensibly from top to bottom, with no major
+continuity errors. An example of a major continuity error is having a
+data set listed for Task 3 that is not part of one of the data sets
+listed in Task 1.
+
+### 3.2: Error-free code **(2 points)**
+
+For full marks, all code in the document should run without error and be
+completely reproducible.
+
+### 3.3 README **(6 points)**
+
+There should be a file named `README.md` at the top level of your
+repository. Its contents should automatically appear when you visit the
+repository on GitHub.
+
+Minimum contents of the README file:
+
+- In a sentence or two, explains what this repository is, so that
+  future-you or someone else stumbling on your repository can be
+  oriented to the repository.
+- List the files/folders contained in the repository
+- In a sentence or two, briefly explains how to engage with the
+  repository. You can assume the person reading knows the material from
+  STAT 545A. Basically, if a visitor to your repository wants to explore
+  your project, what should they know? How can they reproduce your
+  report?
+
+### 3.4 Generative AI Disclosure **(3 points)**
+
+In this course, Generative AI can be used in the following ways:
+
+- to clarify concepts discussed in class
+
+- as an “advanced search engine” (i.e., searching error codes)
+
+- debugging code that students wrote and attempted to debug on their own
+
+Generative AI **CANNOT** be used to generate text or code (including
+comments) from scratch.
+
+Any use of Generative AI must be disclosed.
+
+**To disclose your use, please copy and paste the following template
+into the README of your GitHub Repository and fill out the relevant
+details** \[in square brackets\]. BE SPECIFIC. Saying you used it to
+debug your code is not enough. Explicitly describe where you got stuck
+
+Here is an example of a specific, explicit debug:
+
+> “I had the error `attempt to apply non-function` after running my
+> code. I used Claude to help me identify that this error was due to me
+> attempting to multiply two numbers together without the use of a `*`,
+> i.e. `(2)(3)` instead of `2*3`.”
+
+``` markdown
+
+## Generative AI Statement
+
+Generative AI (through [LIST MODELS USED, i.e. ChatGPT, CoPilot)] was used to
+help me complete  this assignment in the following ways.
+
+1. [Describe here]
+
+2. [Describe here]
+
+...
+
+I affirm that Generative AI was not used to generate text, code, or comments for
+my assessments.
+```
+
+If you did not use Generative AI, please include the following in your
+README:
+
+``` markdown
+
+## Generative AI Statement
+
+Generative AI was not used in any way throughout this assignment.
+```
+
+Assessments suspected of having AI-generated text and/or code, or
+assignments where the Generative AI use was not disclosed, will be
+flagged and temporarily assigned a grade of zero. Students will be
+required to meet with the instructor to receive a grade.
+
+### 3.5 Output **(4 points)**
+
+All output on GitHub is readable, recent and relevant:
+
+- All `.qmd` files have been rendered to their output `.md` files.
+- All rendered `.md` files are viewable without errors on Github.
+  Examples of errors: Missing plots, “Sorry about that, but we can’t
+  show files that are this big right now” messages, error messages from
+  broken R code
+- All of these output files are up-to-date – that is, they haven’t
+  fallen behind after the source (`.qmd`) files have been updated.
+- There should be no relic output files. For example, if you were
+  rendering a `.qmd` to `.html`, but then changed the output to be only
+  a markdown file, then the `.html` file is a relic and should be
+  deleted.
+
+# Step 4: Submission
+
+\*\* Submit repo link \*\*
+
+To submit this milestone, submit the github link to the repo.
+
+This assignment was authored by the team of instructors at University of
+British Colombia’s STA 545 class.
